@@ -1,8 +1,33 @@
 import React from 'react'
 import logo from "../assets/wjbetech-logo-transparent.png"
 import "./navbar.css"
+import { useState } from 'react'
+import axios from 'axios'
 
-export const NavBar = () => {
+export const NavBar = ({ onMealsLoaded, meals }) => {
+
+    // state
+    const [search, setSearch] = useState("");
+
+    // functionaltiy
+    const handleChange = (event) => {
+        setSearch(event.target.value)
+    }
+
+    const handleClick = () => {
+        console.log(search)
+        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`)
+        .then((result) => {
+            const mealsData = result.data.meals;
+            // update parent component App
+            onMealsLoaded(mealsData)
+        })
+        .catch((error) => {
+            console.error("Error fetching data:", error);
+        });
+        console.log(meals)
+    }
+
   return (
     <div className="navbar">
         <div className="nav-left-container">
@@ -15,19 +40,24 @@ export const NavBar = () => {
                 <input 
                     type="text" 
                     id="meal-search" 
-                    cd="meal-search" 
+                    placeholder="Search an ingredient.."
+                    value={search}
+                    onChange={handleChange}
                 />
-                <button>
-                    <i class='bx bx-search-alt'></i>
+                <button
+                    type="button"
+                    onClick={handleClick}
+                >
+                    <i className='bx bx-search-alt'></i>
                 </button>
             </form>
         </div>
         <div className="nav-right-container">
             <a href="https://github.com/wjbetech">
-                <i class='bx bxl-github' ></i>
+                <i className='bx bxl-github' ></i>
             </a>
             <a href="https://www.linkedin.com/in/william-east-653535211/">
-                <i class='bx bxl-linkedin-square' ></i>
+                <i className='bx bxl-linkedin-square' ></i>
             </a>
         </div>
     </div>
