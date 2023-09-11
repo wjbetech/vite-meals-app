@@ -9,11 +9,20 @@ function App() {
   // state
   const [meals, setMeals] = useState([]);
 
+  // Functionality
   const handleMealsLoaded = (mealsData) => {
     setMeals(mealsData);
-  }
+  };
 
-  console.log(meals)
+  const handleMealClick = (mealData) => {
+    setSelectedMeal(mealData);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedMeal(null);
+  };
+
+
 
   return (
     <div>

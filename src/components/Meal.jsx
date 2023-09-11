@@ -1,20 +1,13 @@
 import React from 'react'
 import "./Meal.css"
 import { useState } from 'react'
-import { Modal } from './Modal'
 
-export const Meal = ({ meal }) => {
-
-    const [openModal, setOpenModal] = useState(false);
-
-    const handleClick = () => {
-        setOpenModal(!openModal);
-    }
+export const Meal = ({ meal, onClick }) => {
 
     return (
         <div className="single-meal">
             <div 
-                onClick={handleClick}
+                onClick={onClick}
             >
                 <img 
                     className='single-meal-img' 
@@ -22,11 +15,6 @@ export const Meal = ({ meal }) => {
                     alt={meal.strMealThumb}
                     />
                 <h3>{meal.strMeal}</h3>
-            </div>
-            <div className="modal-container">
-                {openModal && (
-                    <Modal meal={meal} />
-                )}
             </div>
         </div>
     )
