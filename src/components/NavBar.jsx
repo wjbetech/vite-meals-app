@@ -91,3 +91,6 @@ export const NavBar = ({ onMealsLoaded, meals }) => {
     </div>
   )
 }
+
+
+

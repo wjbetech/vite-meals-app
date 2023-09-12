@@ -26,6 +26,10 @@
     }
 }
 
+.single-meal {
+    background-color: var(--element-color);
+}
+
 .single-meal:hover {
     transform: scale(1.05);
 }

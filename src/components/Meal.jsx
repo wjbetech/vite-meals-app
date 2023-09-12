@@ -1,8 +1,15 @@
 import React from 'react'
 import "./Meal.css"
-import { useState } from 'react'
 
 export const Meal = ({ meal, onClick }) => {
+
+    function capitalizeWords(word) {
+        let words = word.split(" ")
+        for (let i = 0; i < words.length; i++) {
+            words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+        }
+        return words.join(" ");
+    };
 
     return (
         <div className="single-meal">
@@ -14,7 +21,7 @@ export const Meal = ({ meal, onClick }) => {
                     src={meal.strMealThumb} 
                     alt={meal.strMealThumb}
                     />
-                <h3>{meal.strMeal}</h3>
+                <h3>{capitalizeWords(meal.strMeal)}</h3>
             </div>
         </div>
     )
